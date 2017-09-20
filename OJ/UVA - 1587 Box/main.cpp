@@ -7,38 +7,44 @@
 //
 #include <iostream>
 #include <cstdio>
+#include <algorithm>
 using namespace std;
 const int maxn = 1e9 + 7;
+
+struct Face {
+	int height;
+	int width;
+	bool operator==(Face& rhs) const 
+	{
+		return (height == rhs.height && width == rhs.width);
+	}
+}face[7];
+
+bool compar(struct Face a, struct Face b)
+{
+	if (a.width == b.width)
+		return a.height < b.height;
+	else
+		return a.width < b.width;
+}
+
 int main()
 {
-	int t,height,width,i=0;
-	int face[7][3];
-	while (cin >> height >> width)
+	int i=1;
+	while (cin >> face[i].height >> face[i].width)
 	{
-		i++;
-		face[i][1] = height;
-		face[i][2] = width;
+		if (face[i].height < face[i].width)
+			swap(face[i].height, face[i].width);
 		if (i == 6)
 		{
-			int pair = 0;
 			i = 0;
-			for (int j = 1; j <= 6; j++)
-			{
-				for (int k = j + 1; k <= 6; k++)
-				{
-					if (face[j][1] == face[k][1] && face[j][2] == face[k][2] || face[j][1] == face[k][2] && face[j][2] == face[k][1])
-					{
-						pair++;
-						face[j][1] = -1;
-						face[k][1] = -1;
-					}
-				}
-			}
-			if (pair == 3)
+			sort(face + 1, face + 7, compar);
+			if(face[1]==face[2] && face[3]==face[4] && face[5]==face[6] && face[1].width==face[3].width && face[1].height==face[5].width && face[3].height==face[5].height)
 				cout << "POSSIBLE" << endl;
 			else
-				cout << "IMPOSSIBLE" << endl;
+				cout << "IMPOSSIBLE" << endl;	
 		}
+		i++;
 	}
 	return 0;
 }
