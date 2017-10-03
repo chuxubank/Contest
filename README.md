@@ -1,2 +1,2 @@
-# OI
+# Contest
 ### Private use.
