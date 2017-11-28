@@ -1,70 +1,107 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define max 3
-//sum用于描述解的可能的个数，每当输出一次复合要求的位置
-//sum的数量就会被+1
-int queen[max], sum=0; /* max为棋盘最大坐标 */
-
-void show() /* 输出所有皇后的坐标 */
+#include <bits/stdc++.h>
+using namespace std;
+const long long mod=1e9+7;
+#define ll long long
+ll n,m,k,ans=0;
+int a[30][30],num=0;
+//f_zyj鐨勫揩閫熷箓妯℃澘鏈夎
+ll powM(ll x,ll n,ll mod)
 {
-    int i;
-    printf("(");
-    //i代表行数，queen[i]代表当前行元素所处的列数，
-    //注意此处下标是从0开始的
-
-    for(i = 0; i < max; i++)
+    ll res = 1;
+    while(n > 0)
     {
-         printf(" %d", queen[i]+1);
+        if(n & 1)
+            res = res * x % mod;
+        x = x * x % mod;
+        n >>= 1;
     }
-    printf(")\n");
-    //每次输出一种解的时候，那么他的解的数量就会增加1
-    sum++;
+    return res;
+}
+bool judger(int p)
+{
+    bool flag=true;
+    int r=1;
+    for(int j=0;j<m;j++)
+        r*=a[p][j];
+    if(r!=k)
+        flag=false;
+    return flag;
 }
 
-//此函数用于判断皇后当前皇后是否可以放在此位置
-int PLACE(int n) /* 检查当前列能否放置皇后 */
+bool judgec(int q)
 {
-    //queen[i] == queen[n]用于保证元素不能再同一列
-    //abs(queen[i] - queen[n]) == abs(n - i)用于约束元素不能再同一行且不能再同一条斜线上
-    int i;
-    for(i = 0; i < n; i++) /* 检查横排和对角线上是否可以放置皇后 */
-    {
-        if(queen[i] == queen[n])
-        {
-            return 0;
-        }
-    }
-    return 1;
+    bool flag=true;
+    int c=1;
+    for(int i=0;i<n;i++)
+        c*=a[i][q];
+    if(c!=k)
+        flag=false;
+    return flag;
 }
 
-//核心函数，回溯法的思想
-void NQUEENS(int n) /* 回溯尝试皇后位置,n为横坐标 */
+void dfs(int p,int q)
 {
-    int i;
-    for(i = 0; i < max; i++)
+    if(p==n && q==0)
     {
-        //首先将皇后放在第0列的位置，对于第一次来说是肯定成立的
-        //所以第一次将皇后放在第0行0列的位置
-        queen[n] = i; /* 将皇后摆到当前循环到的位置 */
-        if(PLACE(n))
+        bool flag=true;
+        for(int i=0;i<n;i++)
         {
-            if(n == max - 1)
-            {
-                show(); /* 如果全部摆好，则输出所有皇后的坐标 */
-            }
-            else
-            {
-                NQUEENS(n + 1); /* 否则继续摆放下一个皇后 */
-            }
+            if(judger(i)==false)
+                flag=false;
         }
+        for(int j=0;j<m;j++)
+        {
+            if(judgec((j)==false))
+                flag=false;
+        }
+        if(flag==true)
+        {
+//            for(int i=0;i<n;i++)
+//            {
+//                for(int j=0;j<m;j++)
+//                {
+//                    cout<<a[i][j]<<" ";
+//                }
+//                cout<<endl;
+//            }
+//            cout<<endl;
+            ans++;
+        }
+        return;
     }
+    //鍓灊
+    if(q==0 && p>0 && judger(p-1)==false)
+        return;
+    if(p==n && judgec(q)==false)
+        return;
+
+    a[p][q]=1;
+    if(q+1==m)
+        dfs(p+1,0);
+    else
+        dfs(p,q+1);
+    a[p][q]=-1;
+    if(q+1==m)
+        dfs(p+1,0);
+    else
+        dfs(p,q+1);
 }
 
 int main()
 {
-    NQUEENS(0); /* 从横坐标为0开始依次尝试 */
-    printf("\n");
-    printf("总共的解法有%d种\n", sum);
-
+    ios::sync_with_stdio(false);
+    cin>>n>>m>>k;
+    //娴嬮噺鏃堕棿
+    clock_t start_time=clock();
+    {
+        if((n-m)%2!=0 && k==-1)
+        ans=0;
+        else
+            ans=powM(powM(2,n-1,mod),m-1,mod);
+//            dfs(0,0);
+        cout<<ans<<endl;
+    }
+    clock_t end_time=clock();
+    cout<< "Running time is: "<<static_cast<double>(end_time-start_time)/CLOCKS_PER_SEC*1000<<"ms"<<endl;//杈撳嚭杩愯鏃堕棿
     return 0;
 }
