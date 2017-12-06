@@ -1,132 +1,155 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 using namespace std;
+//å®šä¹‰æƒé™
+struct Privilege {
+	string name;
+	int level;
+};
 
-struct Privilege  //¶¨ÒåÈ¨ÏŞ
-{
-    string name;
-    int level;
+//å®šä¹‰è§’è‰²
+struct Role {
+	string name;
+	struct Privilege privilege[11];
+	int priviNum;
 };
-struct Role  //¶¨Òå½ÇÉ«
-{
-    string name;
-    struct Privilege privilege[11];
-    int priviNum;
+
+//å®šä¹‰ç”¨æˆ·
+struct User {
+	string name;
+	struct Role uRole[11];
+	int roleNum;
 };
-struct User  //¶¨ÒåÓÃ»§
-{
-    string name;
-    struct Role uRole[11];
-    int roleNum;
-};
+
 struct Privilege pri[101];
 struct Role role[101];
 struct User user[101];
 
 int findPrivilege(string name)
 {
-    for(int i=0;i<100;i++){
-        if(pri[i].name==name)
-            return i;
-    }
-    return -1;
+	for (int i = 0; i < 100; i++)
+	{
+		if (pri[i].name == name)
+			return i;
+	}
+	return -1;
 }
+
 int findRole(string name)
 {
-    for(int i=0;i<100;i++){
-        if(role[i].name==name)
-            return i;
-    }
-    return -1;
+	for (int i = 0; i < 100; i++)
+	{
+		if (role[i].name == name)
+			return i;
+	}
+	return -1;
 }
+
 int findUser(string name)
 {
-    for(int i=0;i<100;i++){
-        if(name==user[i].name)
-            return i;
-    }
-    return -1;
+	for (int i = 0; i < 100; i++)
+	{
+		if (name == user[i].name)
+			return i;
+	}
+	return -1;
 }
+
 struct Privilege getPrivilege(string quanxian)
 {
-    struct Privilege p;// Èç¹ûÈ¨ÏŞ´øµÈ¼¶
-    if(quanxian.find(":",0)!=string::npos){
-        int pos=quanxian.find(":",0);
-        p.name = quanxian.substr(0,pos);
-        p.level = quanxian.at(quanxian.length()-1)-'0';
-    }//Èç¹û²»´øµÈ¼¶
-    else{
-        p.name=quanxian;
-        p.level=-1;
-    }
-    return p;
+	struct Privilege p;// å¦‚æœæƒé™å¸¦ç­‰çº§
+	if (quanxian.find(":", 0) != string::npos)
+	{
+		int pos = quanxian.find(":", 0);
+		p.name = quanxian.substr(0, pos);
+		p.level = quanxian.at(quanxian.length() - 1) - '0';
+	}//å¦‚æœä¸å¸¦ç­‰çº§
+	else
+	{
+		p.name = quanxian;
+		p.level = -1;
+	}
+	return p;
 }
 
 int main()
 {
-    int p,u,r,q;
-    string quanxian;
-    scanf("%d",&p);//ÊäÈëÈ¨ÏŞ
-    for(int i=0;i<p;i++){
-        cin>>quanxian;
-        pri[i]=getPrivilege(quanxian);
-    }
-    cin>>r;//ÊäÈë½ÇÉ«
-    for(int i=0;i<r;i++){
-        string username;
-        cin>>role[i].name;
-        cin>>role[i].priviNum;//ÊäÈë½ÇÉ«µÄÌØÈ¨
-        for(int j=0;j<role[i].priviNum;j++){
-            string quanxian;
-            cin>>quanxian;
-            role[i].privilege[j]=getPrivilege(quanxian);
-        }
-    }
-    cin>>u;//ÊäÈëÓÃ»§
-    for(int i=0;i<u;i++){
-        cin>>user[i].name;
-        cin>>user[i].roleNum;
-        for(int j=0;j<user[i].roleNum;j++){
-            string rolename;
-            cin>>rolename;
-            user[i].uRole[j]=role[findRole(rolename)];
-        }
-    }
-    cin>>q;//¿ªÊ¼²éÑ¯
-    while(q--){
-        string name;
-        string quanxian;
-        cin>>name>>quanxian;
-        int priviFlag=0,maxLevel=-1;
-        if(findUser(name)!=-1){//ÕÒµ½ÓÃ»§
-            User u=user[findUser(name)];
-            for(int j=0;j<u.roleNum;j++){//±éÀúÓÃ»§µÄ½ÇÉ«
-                for(int k=0;k<u.uRole[j].priviNum;k++){//±éÀúÃ¿¸ö½ÇÉ«µÄÌØÈ¨
-                    struct Privilege p;
-                    p=getPrivilege(quanxian);
-                    if(p.name==u.uRole[j].privilege[k].name){//ÕÒµ½ÁË´øÈ¨ÏŞµÄÓÃ»§
-                        if(p.level==-1&&u.uRole[j].privilege[k].level==-1)//²»·ÖµÈ¼¶È¨ÏŞµÄ²»·ÖµÈ¼¶²éÑ¯
-                            priviFlag=1;
-                        else if(p.level==-1&&u.uRole[j].privilege[k].level!=-1){//·ÖµÈ¼¶È¨ÏŞµÄ²»·ÖµÈ¼¶²éÑ¯
-                             if(maxLevel<u.uRole[j].privilege[k].level){
-                                 priviFlag=1;
-                                 maxLevel=u.uRole[j].privilege[k].level;
-                             }
-                        }
-                        else if(p.level!=-1&&u.uRole[j].privilege[k].level!=-1){//·ÖµÈ¼¶È¨ÏŞµÄ·ÖµÈ¼¶²éÑ¯
-                             if(p.level<=u.uRole[j].privilege[k].level)
-                                 priviFlag=1;
-                        }
-                    }
-                }
-            }
-        }
-        if(priviFlag==1&&maxLevel!=-1)
-            cout<<maxLevel<<endl;
-        else if(priviFlag==1&&maxLevel==-1)
-            cout<<"true"<<endl;
-        else if(priviFlag==0)
-            cout<<"false"<<endl;
-    }
-    return 0;
+	int p, u, r, q;
+	string quanxian;
+	scanf("%d", &p);//è¾“å…¥æƒé™
+	for (int i = 0; i < p; i++)
+	{
+		cin >> quanxian;
+		pri[i] = getPrivilege(quanxian);
+	}
+	cin >> r;//è¾“å…¥è§’è‰²
+	for (int i = 0; i < r; i++)
+	{
+		string username;
+		cin >> role[i].name;
+		cin >> role[i].priviNum;//è¾“å…¥è§’è‰²çš„ç‰¹æƒ
+		for (int j = 0; j < role[i].priviNum; j++)
+		{
+			string quanxian;
+			cin >> quanxian;
+			role[i].privilege[j] = getPrivilege(quanxian);
+		}
+	}
+	cin >> u;//è¾“å…¥ç”¨æˆ·
+	for (int i = 0; i < u; i++)
+	{
+		cin >> user[i].name;
+		cin >> user[i].roleNum;
+		for (int j = 0; j < user[i].roleNum; j++)
+		{
+			string rolename;
+			cin >> rolename;
+			user[i].uRole[j] = role[findRole(rolename)];
+		}
+	}
+	cin >> q;//å¼€å§‹æŸ¥è¯¢
+	while (q--)
+	{
+		string name;
+		string quanxian;
+		cin >> name >> quanxian;
+		int priviFlag = 0, maxLevel = -1;
+		if (findUser(name) != -1)//æ‰¾åˆ°ç”¨æˆ·
+		{
+			User u = user[findUser(name)];
+			for (int j = 0; j < u.roleNum; j++)//éå†ç”¨æˆ·çš„è§’è‰²
+			{
+				for (int k = 0; k < u.uRole[j].priviNum; k++)//éå†æ¯ä¸ªè§’è‰²çš„ç‰¹æƒ
+				{
+					struct Privilege p;
+					p = getPrivilege(quanxian);
+					if (p.name == u.uRole[j].privilege[k].name)//æ‰¾åˆ°äº†å¸¦æƒé™çš„ç”¨æˆ·
+					{
+						if (p.level == -1 && u.uRole[j].privilege[k].level == -1) //ä¸åˆ†ç­‰çº§æƒé™çš„ä¸åˆ†ç­‰çº§æŸ¥è¯¢
+							priviFlag = 1;
+						else if (p.level == -1 && u.uRole[j].privilege[k].level != -1)//åˆ†ç­‰çº§æƒé™çš„ä¸åˆ†ç­‰çº§æŸ¥è¯¢
+						{
+							if (maxLevel < u.uRole[j].privilege[k].level)
+							{
+								priviFlag = 1;
+								maxLevel = u.uRole[j].privilege[k].level;
+							}
+						}
+						else if (p.level != -1 && u.uRole[j].privilege[k].level != -1)//åˆ†ç­‰çº§æƒé™çš„åˆ†ç­‰çº§æŸ¥è¯¢
+						{
+							if (p.level <= u.uRole[j].privilege[k].level)
+								priviFlag = 1;
+						}
+					}
+				}
+			}
+		}
+		if (priviFlag == 1 && maxLevel != -1)
+			cout << maxLevel << endl;
+		else if (priviFlag == 1 && maxLevel == -1)
+			cout << "true" << endl;
+		else if (priviFlag == 0)
+			cout << "false" << endl;
+	}
+	return 0;
 }
