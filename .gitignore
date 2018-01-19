@@ -31,3 +31,5 @@
 !*.markdown
 !*.in
 !*.out
+!*.json
+!Contest.code-workspace
