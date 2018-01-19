@@ -10,16 +10,16 @@ int main()
 	{
 		a.push_back(i);
 	}
-	int number = 1, i = 0;
-	while (a.size() > 2)
+	int number = 1, now = 0;
+	while (a.size() != 1)
 	{
-		int now = i % (a.size());
+		now = now % (a.size());
 		if (number % k == 0 || number % 10 == k)
 		{
 			a.erase(a.begin() + now);
-			i--;
+			now--;
 		}
-		i++;
+		now++;
 		number++;
 	}
 	cout << a[0] << endl;
