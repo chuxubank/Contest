@@ -34,3 +34,4 @@ Test
 !*.json
 !*.py
 !Contest.code-workspace
+!.pylintrc
