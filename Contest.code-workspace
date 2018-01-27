@@ -13,7 +13,8 @@
 			"xstring": "cpp",
 			"xlocale": "cpp",
 			"queue": "cpp",
-			"stack": "cpp"
+			"stack": "cpp",
+			"ostream": "cpp"
 		}
 	}
 }
