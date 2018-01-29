@@ -14,7 +14,7 @@
 			"xlocale": "cpp",
 			"queue": "cpp",
 			"stack": "cpp",
-			"ostream": "cpp"
+			"iostream": "cpp"
 		}
 	}
 }

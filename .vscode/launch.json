@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "preLaunchTask": "C++ Compile (Debug)",
-            "program": "${workspaceRoot}\\.output\\main.exe",
+            "program": "${workspaceRoot}\\.output\\${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

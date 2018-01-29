@@ -10,7 +10,7 @@
                 "-g",
                 "'${file}'",
                 "-o",
-                "${workspaceRoot}\\.output\\main.exe"
+                "${workspaceRoot}\\.output\\${fileBasenameNoExtension}.exe"
             ],
             "type": "shell",
             "problemMatcher": {
