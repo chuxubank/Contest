@@ -1,33 +1,35 @@
-#include<stdio.h>
-#include<string.h>
-#include<math.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
 #define MAXSIZE 100
-int x[MAXSIZE];//x[k]´ú±íµÄµÚk¸ö»ÊºóÔÚx[k]ÁĞ£¬k´Ó0¿ªÊ¼£¬ÁĞÒ²´Ó0¿ªÊ¼
-int count =0;
-int n =8;
+int x[MAXSIZE];//x[k]ä»£è¡¨çš„ç¬¬kä¸ªçš‡ååœ¨x[k]åˆ—ï¼Œkä»0å¼€å§‹ï¼Œåˆ—ä¹Ÿä»0å¼€å§‹
+int count = 0;
+int n = 8;
 void queen(int k);
-int main(void) 
+
+int main(void)
 {
-    queen(0);
-    printf("%d\n",count);
-    return 0;
+	queen(0);
+	printf("%d\n", count);
+	return 0;
 }
+
 void queen(int k)
 {
-    for(int i =0; i < k -1; i++)//ÅĞ¶ÏÊÇ·ñ½øÈëÏÂÒ»¸öµİ¹éµÄÌõ¼ş
-    {
-        int judge = x[i]- x[k -1];
-        if(judge ==0|| fabs(k -1- i)== fabs(judge))
-            return;
-    }
-    if(k == n)//Ìø³öµİ¹éµÄÌõ¼ş  
-    {
-        count++;
-        return;
-    }
-    for(int j =0; j < n; j++)
-    {
-        x[k]= j;
-        queen(k +1);
-    }  
-}  
+	for(int i = 0; i < k - 1; i++)//åˆ¤æ–­æ˜¯å¦è¿›å…¥ä¸‹ä¸€ä¸ªé€’å½’çš„æ¡ä»¶
+	{
+		int judge = x[i] - x[k - 1];
+		if(judge == 0 || fabs(k - 1 - i) == fabs(judge))
+			return;
+	}
+	if(k == n)//è·³å‡ºé€’å½’çš„æ¡ä»¶
+	{
+		count++;
+		return;
+	}
+	for(int j = 0; j < n; j++)
+	{
+		x[k] = j;
+		queen(k + 1);
+	}
+}
