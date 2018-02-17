@@ -5,7 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C++",
+            "name": "C++ (LLDB)",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "C++ Compile",
+            "program": "${workspaceFolder}/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "C++ (GDB)",
             "type": "cppdbg",
             "request": "launch",
             "preLaunchTask": "C++ Compile",

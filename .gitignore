@@ -30,7 +30,6 @@ Test
 !*.md
 !*.markdown
 !*.in
-!*.out
 !*.json
 !*.py
 !Contest.code-workspace
