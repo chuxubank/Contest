@@ -3,19 +3,5 @@
 		{
 			"path": "."
 		}
-	],
-	"settings": {
-		"files.associations": {
-			"algorithm": "cpp",
-			"deque": "cpp",
-			"list": "cpp",
-			"vector": "cpp",
-			"xstring": "cpp",
-			"xlocale": "cpp",
-			"queue": "cpp",
-			"stack": "cpp",
-			"iostream": "cpp",
-			"stdio.h": "c"
-		}
-	}
+	]
 }
