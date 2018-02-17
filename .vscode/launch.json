@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "preLaunchTask": "C++ Compile",
-            "program": "${workspaceRoot}/a",
+            "program": "${workspaceFolder}/a",
             "args": [],
             "stopAtEntry": false,
             "environment": [],
