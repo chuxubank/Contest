@@ -6,22 +6,33 @@
         {
             "label": "C++ Compile",
             "command": "clang++",
-            "args": [
-                "'${file}'",
-                "-g", // 生成和调试有关的信息
-                "-Wall", // 开启额外警告
-                "-std=c++11" // C语言最新标准为c11，或根据自己的需要进行修改
-            ], // 编译命令参数
+            "windows": {
+                "args": [
+                    "'${file}'",
+                    "-g",
+                    "-Wall",
+                    "--target=x86_64-w64-mingw",
+                    "-std=c++11"
+                ],
+            },
+            "osx": {
+                "args": [
+                    "'${file}'",
+                    "-g",
+                    "-Wall",
+                    "-std=c++11"
+                ],
+            },
             "type": "shell",
             "group": {
                 "kind": "build",
-                "isDefault": true // 设为false可做到一个tasks.json配置多个编译指令，需要自己修改本文件，我这里不多提
+                "isDefault": true
             },
             "presentation": {
                 "echo": true,
-                "reveal": "always", // 在“终端”中显示编译信息的策略，可以为always，silent，never。具体参见VSC的文档
-                "focus": false, // 设为true后可以使执行task时焦点聚集在终端，但对编译c和c++来说，设为true没有意义
-                "panel": "shared" // 不同的文件的编译信息共享一个终端面板
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
             }
         }
     ]
