@@ -5,23 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C++ Launch (GDB)",
+            "name": "C++",
             "type": "cppdbg",
             "request": "launch",
-            "preLaunchTask": "C++ Compile (Debug)",
-            "program": "${workspaceRoot}\\.output\\${fileBasenameNoExtension}.exe",
+            "preLaunchTask": "C++ Compile",
+            "program": "${workspaceRoot}/a",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
+            "cwd": "${workspaceFolder}",
+            "internalConsoleOptions": "neverOpen",
             "MIMode": "gdb",
             "miDebuggerPath": "gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
+                    "ignoreFailures": false
                 }
             ]
         },
