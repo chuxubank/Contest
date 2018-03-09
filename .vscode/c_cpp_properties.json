@@ -1,11 +1,15 @@
 {
-    "configurations": [{
+    "configurations": [
+        {
             "name": "Mac",
             "includePath": [
                 "/usr/include",
+                "/Library/Developer/CommandLineTools/usr/include/c++/v1",
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
                 "/usr/local/include",
-                "${workspaceRoot}"
+                "${workspaceRoot}",
+                "/usr/include/c++/4.2.1",
+                "/usr/include/c++/4.2.1/tr1"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
