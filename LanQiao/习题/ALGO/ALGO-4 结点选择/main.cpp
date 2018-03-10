@@ -1,52 +1,60 @@
-#include<cstdio>
-#include<cstring>
-#include<iostream>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
 using namespace std;
-#define max(a,b) a>b?a:b
+#define max(a, b) a > b ? a : b
 const int MAXN = 100001;
-int M;     //±íÊ¾±ßµÄË÷ÒıºÅ£¬³õÊ¼Îª0
-int head[MAXN];      //±íÊ¾Ä³¸ö½áµãËùÁ¬½ÓµÄ±ß
-int dp[MAXN][2];     //dp[x][0]±íÊ¾µÚx¸ö½áµã²»Ñ¡ÔñÊ±×î´óÈ¨Öµ£¬dp[x][1]±íÊ¾µÚx¸ö½áµãÑ¡ÔñÊ±×î´óÈ¨Öµ
-struct Edge {
-	int toNode;      //±íÊ¾ÕâÌõ±ßµ½´ïµÄ½áµã
-	int nextEdge;   //±íÊ¾ÕâÌõ±ßµÄ³ö·¢½áµãÁ¬½ÓµÄÏÂÒ»Ìõ±ß
-}edge[2 * MAXN];        //Ò»¹²ÓĞn¸ö½áµã£¬ÓĞn-1Ìõ±ß£¬µ«ÊÇ²»Í¬µÄ³ö·¢½áµãËã×÷²»Í¬µÄ±ß£¬ËùÒÔÓĞ2n-2Ìõ±ß
+int M;     //è¡¨ç¤ºè¾¹çš„ç´¢å¼•å·ï¼Œåˆå§‹ä¸º0
+int head[MAXN];      //è¡¨ç¤ºæŸä¸ªç»“ç‚¹æ‰€è¿æ¥çš„è¾¹
+int dp[MAXN][2];     //dp[x][0]è¡¨ç¤ºç¬¬xä¸ªç»“ç‚¹ä¸é€‰æ‹©æ—¶æœ€å¤§æƒå€¼ï¼Œdp[x][1]è¡¨ç¤ºç¬¬xä¸ªç»“ç‚¹é€‰æ‹©æ—¶æœ€å¤§æƒå€¼
+struct Edge
+{
+	int toNode;      //è¡¨ç¤ºè¿™æ¡è¾¹åˆ°è¾¾çš„ç»“ç‚¹
+	int nextEdge;   //è¡¨ç¤ºè¿™æ¡è¾¹çš„å‡ºå‘ç»“ç‚¹è¿æ¥çš„ä¸‹ä¸€æ¡è¾¹
+} edge[2 * MAXN];        //ä¸€å…±æœ‰nä¸ªç»“ç‚¹ï¼Œæœ‰n-1æ¡è¾¹ï¼Œä½†æ˜¯ä¸åŒçš„å‡ºå‘ç»“ç‚¹ç®—ä½œä¸åŒçš„è¾¹ï¼Œæ‰€ä»¥æœ‰2n-2æ¡è¾¹
 
-						//°ÑĞÂ±ß¼ÓÈë±ß¼¯,¹¹ÔìÊ÷
-void add(int from, int to) {
+//æŠŠæ–°è¾¹åŠ å…¥è¾¹é›†,æ„é€ æ ‘
+void add(int from, int to)
+{
 	edge[M].toNode = to;
 	edge[M].nextEdge = head[from];
-	head[from] = M++;                            //head[x]µÄÖµ¿ÉÄÜ»á±»¶ş´Î¸³Öµ
+	head[from] = M++;                            //head[x]çš„å€¼å¯èƒ½ä¼šè¢«äºŒæ¬¡èµ‹å€¼
 }
 
-//ÀàËÆdfs±éÀú
-void dfs(int node, int preNode) {
-	for (int i = head[node]; i != -1; i = edge[i].nextEdge) {
-		if (edge[i].toNode == preNode)             //ËµÃ÷ÕâÌõ±ßÒÑ¾­ËÑË÷¹ı
+//ç±»ä¼¼dfséå†
+void dfs(int node, int preNode)
+{
+	for(int i = head[node]; i != -1; i = edge[i].nextEdge)
+	{
+		if(edge[i].toNode == preNode)              //è¯´æ˜è¿™æ¡è¾¹å·²ç»æœç´¢è¿‡
 			continue;
-		int toNode = edge[i].toNode;           //±íÊ¾±ßiµ½´ïµÄ½áµã
+		int toNode = edge[i].toNode;           //è¡¨ç¤ºè¾¹iåˆ°è¾¾çš„ç»“ç‚¹
 		dfs(toNode, node);
-		dp[node][0] += max(dp[toNode][0], dp[toNode][1]);             //¸Ã½áµã²»Ëã£¬Ôò¸Ã±ßÉÏµÄÁíÒ»½áµã¿ÉÑ¡Ò²¿É²»Ñ¡
-		dp[node][1] += dp[toNode][0];                                  //¸Ä½áµãÑ¡ÁË£¬¸Ã±ßÉÏÁíÒ»½áµã¾Í²»ÄÜÑ¡ÁË
+		dp[node][0] += max(dp[toNode][0], dp[toNode][1]);             //è¯¥ç»“ç‚¹ä¸ç®—ï¼Œåˆ™è¯¥è¾¹ä¸Šçš„å¦ä¸€ç»“ç‚¹å¯é€‰ä¹Ÿå¯ä¸é€‰
+		dp[node][1] += dp[toNode][0];                                  //æ”¹ç»“ç‚¹é€‰äº†ï¼Œè¯¥è¾¹ä¸Šå¦ä¸€ç»“ç‚¹å°±ä¸èƒ½é€‰äº†
 	}
 }
-int main() {
+
+int main()
+{
 	int n;
-	memset(head, -1, sizeof(head));           //ËùÓĞ±ßÖÃÎª-1£¬±íÊ¾²»´æÔÚ¸Ã±ß
+	memset(head, -1, sizeof(head));           //æ‰€æœ‰è¾¹ç½®ä¸º-1ï¼Œè¡¨ç¤ºä¸å­˜åœ¨è¯¥è¾¹
 	memset(dp, 0, sizeof(dp));
 	cin >> n;
-	for (int i = 1; i <= n; i++) {
-		cin >> dp[i][1];                      //Ã¿Ò»¸ö½áµãµÄÈ¨Öµ
+	for(int i = 1; i <= n; i++)
+	{
+		cin >> dp[i][1];                      //æ¯ä¸€ä¸ªç»“ç‚¹çš„æƒå€¼
 	}
-	for (int j = 1; j <= n - 1; j++) {
+	for(int j = 1; j <= n - 1; j++)
+	{
 		int from, to;
 		cin >> from >> to;
 		add(from, to);
 		add(to, from);
 	}
-	dfs(1, 0);                      //´Ó1ºÅ½áµã¿ªÊ¼Ïòºó¶¯Ì¬¹æ»®
-	int result = max(dp[1][0], dp[1][1]);          //ÒòÎª²»È·¶¨¸ù½áµã£¬ËùÒÔ´Ó¼¸ºÅ¿ªÊ¼¶¯Ì¬¹æ»®¾ÍÕÒ¼¸ºÅµÄ×´Ì¬
-												   //Í¬ÑùÕâÀïÒ²¿ÉÒÔĞ´³É      dfs(2, 0);   int result = max(dp[2][0], dp[2][1]);²»¹ıµ±Ö»ÓĞÒ»¸ö½áµãµÄÊ±ºò¾Í²»¶ÔÁË
+	dfs(1, 0);                      //ä»1å·ç»“ç‚¹å¼€å§‹å‘ååŠ¨æ€è§„åˆ’
+	int result = max(dp[1][0], dp[1][1]);          //å› ä¸ºä¸ç¡®å®šæ ¹ç»“ç‚¹ï¼Œæ‰€ä»¥ä»å‡ å·å¼€å§‹åŠ¨æ€è§„åˆ’å°±æ‰¾å‡ å·çš„çŠ¶æ€
+	                                               //åŒæ ·è¿™é‡Œä¹Ÿå¯ä»¥å†™æˆ      dfs(2, 0);   int result = max(dp[2][0], dp[2][1]);ä¸è¿‡å½“åªæœ‰ä¸€ä¸ªç»“ç‚¹çš„æ—¶å€™å°±ä¸å¯¹äº†
 	cout << result << endl;
 	return 0;
 }
