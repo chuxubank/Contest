@@ -1,3 +1,4 @@
+//WRONG ANSWER
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -54,6 +55,19 @@ int main()
 		if(flag == true)
 			break;
 	}
+	if(len == 0)
+	{
+		for(int i = maxn; i < n; i++)
+		{
+			if(isPrime(i) && n % i == 0)
+			{
+				len = 1;
+				begin = i - 1;
+				break;
+			}
+		}
+	}
+
 	cout << len << endl;
 	for(int i = 1; i <= len; i++)
 	{
@@ -66,3 +80,5 @@ int main()
 
 //特殊的判断素数的方法
 //前缀和求连续因数
+//特殊情况 如果经过二重循环扫了一遍后len=0则说明len=1 且n由两个大于maxn的素数组成
+//思路错误 反例22*23
