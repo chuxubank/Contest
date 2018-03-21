@@ -6,6 +6,8 @@ const int maxn = 20;
 
 bool isPrime(int num)
 {
+	if(num == 1)
+		return 0;
 	//两个较小数另外处理
 	if(num == 2 || num == 3)
 		return 1;
