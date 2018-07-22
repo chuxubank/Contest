@@ -1,5 +1,6 @@
 {
-    "configurations": [{
+    "configurations": [
+        {
             "name": "Mac",
             "includePath": [
                 "/usr/include",
@@ -97,5 +98,5 @@
             }
         }
     ],
-    "version": 3
+    "version": 4
 }
