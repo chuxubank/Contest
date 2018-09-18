@@ -3,8 +3,7 @@
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-        {
+    "configurations": [{
             "name": "C++",
             "type": "cppdbg",
             "request": "launch",
@@ -23,13 +22,11 @@
                 "program": "${workspaceFolder}/a.exe",
                 "MIMode": "gdb",
                 "miDebuggerPath": "gdb.exe",
-                "setupCommands": [
-                    {
-                        "description": "Enable pretty-printing for gdb",
-                        "text": "-enable-pretty-printing",
-                        "ignoreFailures": false
-                    }
-                ]
+                "setupCommands": [{
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }]
             }
         },
         {
@@ -41,10 +38,7 @@
             "program": "${file}",
             "cwd": "${workspaceFolder}",
             "env": {},
-            "envFile": "${workspaceFolder}/.env",
-            "debugOptions": [
-                "RedirectOutput"
-            ]
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

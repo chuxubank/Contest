@@ -1,6 +1,5 @@
 {
-    "configurations": [
-        {
+    "configurations": [{
             "name": "Mac",
             "includePath": [
                 "/usr/include",
@@ -54,11 +53,11 @@
             "intelliSenseMode": "clang-x64",
             "includePath": [
                 "${workspaceFolder}",
-                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include",
-                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include-fixed",
-                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++",
-                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/x86_64-w64-mingw32",
-                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/backward",
+                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed",
+                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++",
+                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32",
+                "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward",
                 "C:/Program Files/LLVM/x86_64-w64-mingw32/include"
             ],
             "defines": [
@@ -70,11 +69,11 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}",
-                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include",
-                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include-fixed",
-                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++",
-                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/x86_64-w64-mingw32",
-                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/backward",
+                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed",
+                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++",
+                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32",
+                    "C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward",
                     "C:/Program Files/LLVM/x86_64-w64-mingw32/include"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
