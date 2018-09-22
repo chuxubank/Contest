@@ -23,7 +23,7 @@ int main()
 		cin >> i >> j;
 		ming[i + 3][j + 3] = 1;
 	}
-	int countRed;
+	int countRed = 0;
 	for(int i = 0; i < 6; i++)
 	{
 		int count = 0;
