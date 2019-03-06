@@ -1,40 +1,95 @@
 
-标题：字母组串
+标题：打印图形
 
-由 A,B,C 这3个字母就可以组成许多串。
-比如："A","AB","ABC","ABA","AACBB" ....
+如下的程序会在控制台绘制分形图（就是整体与局部自相似的图形）。
 
-现在，小明正在思考一个问题：
-如果每个字母的个数有限定，能组成多少个已知长度的串呢？
+当n=1,2,3的时候，输出如下：
+请仔细分析程序，并填写划线部分缺少的代码。
 
-他请好朋友来帮忙，很快得到了代码，
-解决方案超级简单，然而最重要的部分却语焉不详。
+n=1时：
+ o 
+ooo
+ o 
 
-请仔细分析源码，填写划线部分缺少的内容。
+n=2时：
+    o    
+   ooo   
+    o    
+ o  o  o 
+ooooooooo
+ o  o  o 
+    o    
+   ooo   
+    o    
 
+n=3时：
+             o             
+            ooo            
+             o             
+          o  o  o          
+         ooooooooo         
+          o  o  o          
+             o             
+            ooo            
+             o             
+    o        o        o    
+   ooo      ooo      ooo   
+    o        o        o    
+ o  o  o  o  o  o  o  o  o 
+ooooooooooooooooooooooooooo
+ o  o  o  o  o  o  o  o  o 
+    o        o        o    
+   ooo      ooo      ooo   
+    o        o        o    
+             o             
+            ooo            
+             o             
+          o  o  o          
+         ooooooooo         
+          o  o  o          
+             o             
+            ooo            
+             o             
 
-public class A
+源程序：
+
+public class Main
 {
-	// a个A，b个B，c个C 字母，能组成多少个不同的长度为n的串。
-	static int f(int a, int b, int c, int n)
-	{
-		if(a<0 || b<0 || c<0) return 0;
-		if(n==0) return 1; 
-		
-		return ________________________________;  //填空
+	static void show(byte[][] buf){
+		for(int i=0; i<buf.length; i++){
+			for(int j=0; j<buf[i].length; j++){
+				System.out.print(buf[i][j]==0? ' ' : 'o');
+			}
+			System.out.println();
+		}
 	}
 	
-	public static void main(String[] args)
-	{
-		System.out.println(f(1,1,1,2));
-		System.out.println(f(1,2,3,3));
+	static void draw(byte[][] buf, int x, int y, int size){
+		if(size==1){
+			buf[y][x] = 1;
+			return;
+		}
+		
+		int n = ________________________ ;  // 填空
+		draw(buf, x, y, n);
+		draw(buf, x-n, y ,n);
+		draw(buf, x+n, y ,n);
+		draw(buf, x, y-n ,n);
+		draw(buf, x, y+n ,n);
+	}
+	
+	public static void main(String[] args){
+		final int N = 3;
+		int t = 1;
+		for(int i=0; i<N; i++) t *= 3;
+		
+		byte[][] buf = new byte[t][t];
+		draw(buf, t/2, t/2, t);
+		show(buf);
 	}
 }
 
-对于上面的测试数据，小明口算的结果应该是：
-6
-19
+注意：只提交划线部分缺少的代码，不要抄写任何已经存在的代码或符号。
 
 
-注意：只填写划线部分缺少的代码，不要提交任何多余内容或说明性文字。
 
