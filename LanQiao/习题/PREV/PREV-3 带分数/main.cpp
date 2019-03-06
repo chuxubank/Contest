@@ -29,6 +29,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// substr() is time consuming
 int prase(char *arr, int start, int end)
 {
 	int ans = 0, t = 1;
@@ -46,28 +47,22 @@ int main()
 	cin >> n;
 	int add, num, den;
 	int count = 0;
-	// string s = "123456789";
 	char s[] = "123456789"; //char *s = "" is const
 	do
 	{
-		// printf("%s\n", s);
 		for (int i = 1; i <= 7; i++)
 		{
-			// add = atoi(s.substr(0, i).c_str());
 			add = prase(s, 0, i);
 			if (add >= n)
 				break;
 			for (int j = i + (9 - i) / 2; j <= 8; j++)
 			{
-				// num = atoi(s.substr(i, j - i).c_str());
-				// den = atoi(s.substr(j, 9 - j).c_str());
 				num = prase(s, i, j);
 				den = prase(s, j, 9);
 				if (num % den == 0 && (add + num / den) == n)
 					count++;
 			}
 		}
-		// } while (next_permutation(s.begin(), s.end()));
 	} while (next_permutation(s, s + 9));
 	cout << count;
 	return 0;
