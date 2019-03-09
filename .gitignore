@@ -13,6 +13,7 @@ Test
 !*.cc
 !*.cp
 !*.cpp
+!*.java
 !*.cxx
 !*.h
 !*.h++
