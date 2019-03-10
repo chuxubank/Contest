@@ -1,37 +1,5 @@
-# .gitignore
-# 首先忽略所有的文件
-*
-# 但是不忽略目录
-!*/
-# 忽略一些指定的目录名
-Test
-# 不忽略下面指定的文件类型
-!.gitignore
-!*.png
-!*.txt
-!*.c++
-!*.cc
-!*.cp
-!*.cpp
-!*.java
-!*.cxx
-!*.h
-!*.h++
-!*.hh
-!*.hp
-!*.hpp
-!*.hxx
-!*.C
-!*.H
-!*.c
-!*.jpg
-!*.docx
-!*.doc
-!*.pdf
-!*.md
-!*.markdown
-!*.in
-!*.json
-!*.py
-!Contest.code-workspace
-!.pylintrc
+# C++
+*.out*
+
+# Java
+*.class
