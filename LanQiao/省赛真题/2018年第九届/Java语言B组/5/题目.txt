@@ -1,13 +1,13 @@
 
-���⣺��������
+标题：快速排序
 
-���´�����Դ�����a[]���ҳ���kС��Ԫ�ء�  
-
-
-��ʹ�������ƿ��������еķ����㷨������ʱ�临�Ӷ���O(N)�ġ�
+以下代码可以从数组a[]中找出第k小的元素。  
 
 
-����ϸ�Ķ�����Դ�룬��д���߲���ȱʧ�����ݡ�
+它使用了类似快速排序中的分治算法，期望时间复杂度是O(N)的。
+
+
+请仔细阅读分析源码，填写划线部分缺失的内容。
 
 import java.util.Random;
 public class Main{
@@ -32,7 +32,7 @@ public class Main{
         	a[i] = x;
         	p = i;
         	if(i - l + 1 == k) return a[i];
-        	if(i - l + 1 < k) return quickSelect( _________________________________ ); //���
+        	if(i - l + 1 < k) return quickSelect( _________________________________ ); //填空
         	else return quickSelect(a, l, i - 1, k);	
 	}
 	public static void main(String args[]) {
@@ -41,5 +41,5 @@ public class Main{
 	}
 }
 
-ע�⣺ֻ�ύ���߲���ȱ�ٵĴ��룬��Ҫ��д�κ��Ѿ����ڵĴ������š�
+注意：只提交划线部分缺少的代码，不要抄写任何已经存在的代码或符号。
 

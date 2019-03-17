@@ -1,17 +1,17 @@
 
-���⣺��ӡͼ��
+标题：打印图形
 
-���µĳ�����ڿ���̨���Ʒ���ͼ������������ֲ������Ƶ�ͼ�Σ���
+如下的程序会在控制台绘制分形图（就是整体与局部自相似的图形）。
 
-��n=1,2,3��ʱ��������£�
-����ϸ�������򣬲���д���߲���ȱ�ٵĴ��롣
+当n=1,2,3的时候，输出如下：
+请仔细分析程序，并填写划线部分缺少的代码。
 
-n=1ʱ��
+n=1时：
  o 
 ooo
  o 
 
-n=2ʱ��
+n=2时：
     o    
    ooo   
     o    
@@ -22,7 +22,7 @@ ooooooooo
    ooo   
     o    
 
-n=3ʱ��
+n=3时：
              o             
             ooo            
              o             
@@ -51,7 +51,7 @@ ooooooooooooooooooooooooooo
             ooo            
              o             
 
-Դ����
+源程序：
 
 public class Main
 {
@@ -70,7 +70,7 @@ public class Main
 			return;
 		}
 		
-		int n = ________________________ ;  // ���
+		int n = ________________________ ;  // 填空
 		draw(buf, x, y, n);
 		draw(buf, x-n, y ,n);
 		draw(buf, x+n, y ,n);
@@ -89,7 +89,7 @@ public class Main
 	}
 }
 
-ע�⣺ֻ�ύ���߲���ȱ�ٵĴ��룬��Ҫ��д�κ��Ѿ����ڵĴ������š�
+注意：只提交划线部分缺少的代码，不要抄写任何已经存在的代码或符号。
 
 
 
