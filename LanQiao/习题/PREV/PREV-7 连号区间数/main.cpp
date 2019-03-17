@@ -33,3 +33,5 @@ int main()
     cout << count << endl;
     return 0;
 }
+
+// 连号判断
