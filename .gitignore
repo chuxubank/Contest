@@ -3,3 +3,9 @@
 
 # Java
 *.class
+
+# Test
+/Test
+
+# VS Code
+ipch/
